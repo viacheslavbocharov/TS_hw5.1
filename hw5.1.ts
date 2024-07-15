@@ -3,21 +3,23 @@
 // У каждой фигуры есть общедоступные свойства – цвет и название, которые нельзя изменять после создания. 
 // У Square и Rectangle со своей стороны есть еще дополнительный метод print , выводящий строку с формулой расчета площади
 
-interface Shape {
+abstract class Shape {
     readonly name: string;
     readonly color: string;
 
-    calculateArea(): number;
+    constructor(name: string, color: string) {
+        this.name = name;
+        this.color = color;
+    }
+
+    abstract calculateArea(): number;
 }
 
-class Circle implements Shape {
-    readonly name: string;
-    readonly color: string;
+class Circle extends Shape {
     private radius: number;
 
     constructor(color: string, radius: number) {
-        this.name = 'Circle';
-        this.color = color;
+        super('Circle', color);
         this.radius = radius;
     }
 
@@ -26,15 +28,12 @@ class Circle implements Shape {
     }
 }
 
-class Rectangle implements Shape {
-    readonly name: string;
-    readonly color: string;
+class Rectangle extends Shape {
     private width: number;
     private height: number;
 
     constructor(color: string, width: number, height: number) {
-        this.name = 'Rectangle';
-        this.color = color;
+        super('Rectangle', color);
         this.width = width;
         this.height = height;
     }
@@ -48,14 +47,11 @@ class Rectangle implements Shape {
     }
 }
 
-class Square implements Shape {
-    readonly name: string;
-    readonly color: string;
+class Square extends Shape {
     private side: number;
 
     constructor(color: string, side: number) {
-        this.name = 'Square';
-        this.color = color;
+        super('Square', color);
         this.side = side;
     }
 
@@ -68,15 +64,12 @@ class Square implements Shape {
     }
 }
 
-class Triangle implements Shape {
-    readonly name: string;
-    readonly color: string;
+class Triangle extends Shape {
     private base: number;
     private height: number;
 
     constructor(color: string, base: number, height: number) {
-        this.name = 'Triangle';
-        this.color = color;
+        super('Triangle', color);
         this.base = base;
         this.height = height;
     }
